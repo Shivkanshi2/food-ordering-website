@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Coco Chilli </title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- main stylesheet -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- EmailJS lib (for booking form) -->
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "mkPJURxinqutBfyPj",
+      });
+   })();
+  </script>
+  
+    /* Rest of your existing CSS... */
+  
+</head>
+<body>
+
+  <!-- =====================
+       HEADER / NAV
+       ===================== -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="logo">
+        <img src="images/logo.png" alt="The Coco Chilli logo" />
+        <div class="footer-links">
+          <a href="#home">Home</a> |
+          <a href="#about">About</a> |
+          <a href="#menu">Menu</a> |
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <nav id="main-nav" class="main-nav flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border" aria-label="Main Navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#booking">Find the Table</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <div></div>
+      </nav>
+
+      <button id="navToggle" class="nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <!-- =====================
+       HERO
+       ===================== -->
+  <section id="home" class="hero flowing-light-border">
+    <!-- <div class="hero-inner hero-sub flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-borde">
+      <div class="hero-title flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">The Coco Chilli</div>
+      <div class="hero-sub flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">Cafe & Restaurant</div> -->
+    <!-- </div> -->
+  </section>
+
+  <!-- =====================
+       ABOUT
+       ===================== -->
+  <section id="about" class="section about-section ">
+  <div class="wrap">
+    <h2>About Us</h2>
+    <p>
+      <span id="creative" class="  flowing-light-border">
+        THE COCO CHILLI
+      </span>
+       is known for creating unforgettable food experiences. We believe food is therapy — our chefs use the freshest ingredients and traditional recipes to put a smile on your face.
+    </p>
+  </div>
+</section>
+
+
+  <!-- =====================
+       MENU (five-column)
+       ===================== -->
+  <section id="menu" class="section menu-section   ">
+    <div class="wrap  ">
+      <h2>Our Menu</h2>
+
+      <!-- menu container with dark textured background -->
+      <div class="menu-board" style="background-image: url('images/menu-bg.jpg')">
+        <div class="menu-columns">
+
+          <!-- Column 1 -->
+          <div class="menu-col">
+            <div class="col-icon"><img src="images/icon-drink.png" alt=""></div>
+            <h3 class="col-title">Classic Hot &amp; Cold Drinks</h3>
+            <ul class="menu-list ">
+              <li><span>Chocolate super shake</span><span class="price">38</span></li>
+              <li><span>Strawberries Super Shake</span><span class="price">38</span></li>
+              <li><span>Orange Booster</span><span class="price">45</span></li>
+              <li><span>Purple Power House</span><span class="price">47</span></li>
+              <li><span>Signature cold coffee</span><span class="price">25</span></li>
+              <li><span>Fresh Lime Soda</span><span class="price">25</span></li>
+              <li><span>Masala cold-drink</span><span class="price">25</span></li>
+              <li><span>Hot Chocolate</span><span class="price">35</span></li>
+              <li><span>Tea / Coffee</span><span class="price">10</span></li>
+            </ul>
+
+            <h3 class="col-title small ">STARTERS</h3>
+            <ul class="menu-list">
+              <li><span class="">Crispy chicken fried</span><span class="price">62</span></li>
+              <li><span>Chicken Lollipop</span><span class="price">55</span></li>
+              <li><span>Chicken Wings</span><span class="price">55</span></li>
+              <li><span>Chicken Cheese-Balls</span><span class="price">47</span></li>
+              <li><span>Chicken Fingers</span><span class="price">45</span></li>
+              <li><span>Vegetable Spring-Roll</span><span class="price">30</span></li>
+              <li><span>Potato Cheese Shotz</span><span class="price">35</span></li>
+            </ul>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="menu-col">
+            <div class="col-icon"><img src="images/icon-burger.png" alt=""></div>
+            <h3 class="col-title">Burger &amp; Fries</h3>
+            <ul class="menu-list">
+              <li><span>Veg Cheese Burger</span><span class="price">40</span></li>
+              <li><span>Paneer Cheese Burger</span><span class="price">45</span></li>
+              <li><span>Chicken Cheese Burger</span><span class="price">45</span></li>
+              <li><span>Peri-peri French Fries</span><span class="price">25</span></li>
+            </ul>
+
+            <h3 class="col-title flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">Sandwiches</h3>
+            <ul class="menu-list">
+              <li><span>Tomatoes &amp; Cheese grill</span><span class="price">35</span></li>
+              <li><span>Chicken tikka Sandwich</span><span class="price">40</span></li>
+            </ul>
+
+            <h3 class="col-title flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">Pasta (Veg - Non Veg)</h3>
+            <ul class="menu-list">
+              <li><span>White Creamy sauce</span><span class="price">65</span></li>
+              <li><span>Red Basil Sauce Pasta</span><span class="price">55</span></li>
+            </ul>
+
+            <h3 class="col-title flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">Chinese Cuisine</h3>
+            <ul class="menu-list">
+              <li><span>Chicken Chilli (Dry/Gravy)</span><span class="price">60</span></li>
+              <li><span>Chicken Chowmin</span><span class="price">50</span></li>
+              <li><span>Mix Veg Chowmin</span><span class="price">40</span></li>
+              <li><span>Egg Chowmin</span><span class="price">45</span></li>
+              <li><span>Baby-Corn Chilli</span><span class="price">50</span></li>
+              <li><span>Paneer Chilli (Dry/Gravy)</span><span class="price">65</span></li>
+            </ul>
+          </div>
+
+          <!-- Column 3 -->
+          <div class="menu-col flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+            <div class="col-icon"><img src="images/icon-kebab.png" alt=""></div>
+            <h3 class="col-title">Kebabs</h3>
+            <ul class="menu-list">
+              <li><span>Malai Paneer Tikka</span><span class="price">80</span></li>
+              <li><span>Afghani Chicken Tikka</span><span class="price">90</span></li>
+              <li><span>Chicken Malai Tikka</span><span class="price">90</span></li>
+              <li><span>Chicken Hariyali Seekh</span><span class="price">90</span></li>
+              <li><span>Chicken Seekh Kebab</span><span class="price">90</span></li>
+            </ul>
+
+            <h3 class="col-title flowing-light-border">Fried Rice</h3>
+            <ul class="menu-list">
+              <li><span>Vegetable Fried Rice</span><span class="price">45</span></li>
+              <li><span>Chicken Fried Rice</span><span class="price">50</span></li>
+              <li><span>Paneer Fried Rice</span><span class="price">50</span></li>
+              <li><span>Egg Fried Rice</span><span class="price">45</span></li>
+            </ul>
+
+            <h3 class="col-title flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">Soups</h3>
+            <ul class="menu-list">
+              <li><span>Hot & Sour Veg Soup</span><span class="price">30</span></li>
+              <li><span>Hot & Sour Chicken Soup</span><span class="price">30</span></li>
+              <li><span>Sweet Corn Soup</span><span class="price">30</span></li>
+            </ul>
+          </div>
+
+          <!-- Column 4 -->
+          <div class="menu-col flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+            <div class="col-icon"><img src="images/icon-roll.png" alt=""></div>
+            <h3 class="col-title">Fast-food Rolls</h3>
+            <ul class="menu-list">
+              <li><span>Paneer Tikka Roll</span><span class="price">50</span></li>
+              <li><span>Veg Kathi Roll</span><span class="price">30</span></li>
+              <li><span>Chicken Roll</span><span class="price">50</span></li>
+              <li><span>Egg Roll</span><span class="price">40</span></li>
+            </ul>
+
+            <h3 class="col-title flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">Momos</h3>
+            <ul class="menu-list">
+              <li><span>Veg Steam Momo</span><span class="price">70</span></li>
+              <li><span>Chicken Steam Momo</span><span class="price">80</span></li>
+              <li><span>Paneer Steam Momo</span><span class="price">80</span></li>
+            </ul>
+
+            <h3 class="col-title flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">Pizzas</h3>
+            <ul class="menu-list">
+              <li><span>Margarita</span><span class="price">55</span></li>
+              <li><span>Veggie Delight</span><span class="price">75</span></li>
+              <li><span>Farmhouse</span><span class="price">80</span></li>
+              <li><span>Chicken Tikka Pizza</span><span class="price">99</span></li>
+              <li><span>BBQ Chicken</span><span class="price">110</span></li>
+              <li><span>Chicken Supreme</span><span class="price">145</span></li>
+            </ul>
+          </div>
+
+          <!-- Column 5 -->
+          <div class="menu-col flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+            <div class="col-icon"><img src="images/icon-breakfast.png" alt=""></div>
+            <h3 class="col-title">Breakfast</h3>
+            <ul class="menu-list">
+              <li><span>Idli</span><span class="price">25</span></li>
+              <li><span>Chole Bhature</span><span class="price">60</span></li>
+              <li><span>Masala Dhosa</span><span class="price">50</span></li>
+            </ul>
+
+            <h3 class="col-title flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">Currys (1 Portion)</h3>
+            <ul class="menu-list">
+              <li><span>Mix Veg Kadhai</span><span class="price">40</span></li>
+              <li><span>Malai Kofta</span><span class="price">55</span></li>
+              <li><span>Paneer Tikka Masala</span><span class="price">80</span></li>
+              <li><span>Paneer Do-Pyaza</span><span class="price">70</span></li>
+              <li><span>Dal Tadka/Fry</span><span class="price">35</span></li>
+              <li><span>Dal Makhani</span><span class="price">45</span></li>
+              <li><span>Butter Chicken</span><span class="price">100</span></li>
+              <li><span>Chicken Tikka Masala</span><span class="price">100</span></li>
+              <li><span>Chicken Curry</span><span class="price">90</span></li>
+              <li><span>Egg Curry</span><span class="price">60</span></li>
+            </ul>
+
+            <h3 class="col-title flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">Indian Bread</h3>
+            <ul class="menu-list">
+              <li><span>Chapatti</span><span class="price">10</span></li>
+              <li><span>Butter Naan</span><span class="price">15</span></li>
+              <li><span>Garlic Naan</span><span class="price">25</span></li>
+              <li><span>Stuffed Kulcha</span><span class="price">30</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       GALLERY
+       ===================== -->
+  <section id="gallery" class="section gallery-section  premium-flow  ultra-glow " >
+    <div class="wrap">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img src="./WhatsApp Image 2025-08-10 at 7.06.53 AM.png" alt="dish 1">
+        <img src="./WhatsApp Image 2025-08-10 at 7.06.56 AM.png" alt="dish 2">
+        <img src="./WhatsApp Image 2025-08-10 at 7.07.01 AM.png" alt="dish 3">
+        <img src="./WhatsApp Image 2025-08-10 at 7.20.11 AM.png" alt="dish 4">
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       INTERACTIVE MENU
+       ===================== -->
+  <section  id="interactive-menu " class="section interactive-menu-section   flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+    <div class="wrap">
+      <h2>Order Your Favorites</h2>
+
+      <div id="categories-container"></div>
+
+      <h3>Your Cart</h3>
+      <div id="cart-items"></div>
+      <div id="cart-total" style="font-weight: bold; margin-top: 10px;"></div>
+    </div>
+  </section>
+
+  <!-- =====================
+       BOOKING / FIND THE TABLE
+       ===================== -->
+  <section id="booking" class="section booking-section flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+    <div class="wrap booking-wrap">
+      <h2>Find the Table</h2>
+
+      <form id="booking-form" class="booking-form">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name" id="namee" required>
+          <input type="email" name="email" placeholder="Email" id="emaill" required>
+        </div>
+        <div class="form-row">
+          <input type="tel" name="phone" placeholder="Phone Number" id="phonee" required>
+          <input type="number" name="people" placeholder="Number of People" min="1" id="peoplee" required>
+        </div>
+        <div class="form-row">
+          <input type="date" name="date" id="datee" >
+          <input type="time" name="time" id="timee">
+        </div>
+        <div id="order-summary-container" style="display: none;">
+          <h4 style="margin-bottom: 10px;">Your Order Summary</h4>
+          <div id="order-summary" style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin-bottom: 15px;"></div>
+        </div>
+        <textarea name="message" placeholder="Special Requests (optional)" id="requestt"></textarea>
+
+        <div class="form-actions premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+          <button type="submit" class="btn-primary">Book Now</button>
+          <div id="booking-status" class="booking-status" aria-live="polite"></div>
+        </div>
+      </form>
+      
+
+      <aside class="booking-info flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+        <h3>Contact Details</h3>
+        <p><strong>Our Addresses</strong><br>
+          Kara Road Torpa near Ashock Hotel<br>
+        Dist-Khunti, PS-Torpa Pin-code 835227, Post-office -Kasmar State-Jharkhand
+        </p>
+
+        <p><strong>Email Id:</strong><br>bhardwajkumar@gamil.com</p>
+
+        <p><strong>Call Us Now</strong><br>
+          Kara Road Torpa +91 9939701019, +91 7484097110<br>
+         
+        </p>
+
+        <div class="opening-card flowing-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+          <h4>Opening Times</h4>
+          <ul>
+            <li>Mon: 8:00 AM – 10:00 PM</li>
+            <li>Tue: 8:00 AM – 10:00 PM</li>
+            <li>Wed: 8:00 AM – 10:00 PM</li>
+            <li>Thu: 8:00 AM – 10:00 PM </li>
+            <li>Fri: 8:00 AM – 10:00 PM</li>
+            <li>Sat: 8:00 AM – 10:00 PM</li>
+            <li>Sun: 8:00 AM – 10:00 PM</li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- =====================
+       CONTACT
+       ===================== -->
+  <section id="contact" class="section contact-section flowing-light-border">
+    <div class="wrap">
+      <h2>Contact Us</h2>
+      <p>Feel free to reach us. We are all ears for your feedback and queries.</p>
+
+      <div class="contact-cards flowing-light-border">
+        <div class="card">
+          <h4>Addresses</h4>
+         <pre> <p>Kara Road Torpa near Ashock Hotel<br>
+        Dist-Khunti, PS-Torpa Pin-code 835227, Post-office -Kasmar 
+        State-Jharkhand<br></pre>
+             </p>
+        </div>
+
+        <div class="card">
+          <h4>Email</h4>
+          <p>bhardwajkumar@gmail.com</p>
+        </div>
+
+        <div class="card">
+          <h4>Phone</h4>
+          <pre><p><br>Kara Road Torpa near Ashok Hotel +91 9939701019, 
+            +91 7484097110</pre>
+             </p>
+        </div>
+      </div>
+
+      <div class="map-wrap premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+        <!-- Replace with your actual Google Maps embed -->
+        <iframe
+          src=""
+          width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+       FOOTER
+       ===================== -->
+  <footer class="site-footer" class="flowing-light-border premium-flow neon-flow rainbow-flow ultra-glow .menu-col.flowing-light-border .hero.flowing-light-border">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div>© 2025 The Coco Chilli. All Rights Reserved. Creator:ShivKanshi</div>
+        <div class="footer-links">
+          <a href="#home">Home</a> |
+          <a href="#about">About</a> |
+          <a href="#menu">Menu</a> |
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="./script.js"></script>
+</body>
+</html>
