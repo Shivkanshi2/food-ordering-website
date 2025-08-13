@@ -292,9 +292,9 @@
       <p>
         <span id="creative" class="flowing-light-border"> Welcome to The Coco Chilli</span>
        
-Nestled in the heart of Jharkhand, The Coco Chilli is more than just a café—it’s an experience. Inspired by the rustic charm of our forests and the warmth of village life, we bring you a fusion of authentic flavors, fresh ingredients, and a cozy wooden ambience.
+Nestled in the heart of Jharkhand, The Coco Chilli is more than just a café—it's an experience. Inspired by the rustic charm of our forests and the warmth of village life, we bring you a fusion of authentic flavors, fresh ingredients, and a cozy wooden ambience.
 
-From hearty local delicacies to global favorites, every dish here is crafted with love, a touch of spice, and a whole lot of soul. Whether you’re here for a quick coffee, a leisurely meal, or a celebration with friends, The Coco Chilli is your go-to spot for good food, good vibes, and great memories.
+From hearty local delicacies to global favorites, every dish here is crafted with love, a touch of spice, and a whole lot of soul. Whether you're here for a quick coffee, a leisurely meal, or a celebration with friends, The Coco Chilli is your go-to spot for good food, good vibes, and great memories.
 
 Taste the tradition. Feel the comfort. Love the spice.
       </p>
@@ -502,10 +502,10 @@ Taste the tradition. Feel the comfort. Love the spice.
             <input type="tel" name="phone" placeholder="Phone Number" id="phonee" required pattern="[0-9+\-\s]{7,}">
             <input type="text" name="location" placeholder="Your Location" id="locatione" required>
           </div>
-          <div class="form-row">
-            <input type="date" name="date" id="datee">
-            <input type="time" name="time" id="timee">
-          </div>
+         <div class="form-row">
+  <input type="text" name="date" id="datee" readonly>
+  <input type="text" name="time" id="timee" readonly>
+</div>
 
           <div class="order-picker-block">
             <div class="order-picker-heading">
@@ -526,7 +526,11 @@ Taste the tradition. Feel the comfort. Love the spice.
           <div class="form-actions" style="margin-top: 12px;">
             <button type="submit" class="btn-primary">Order Now</button>
             <span id="booking-status" class="booking-status" aria-live="polite"></span>
-          </div>
+          </div><br>
+          <button type="button" id="printInvoiceBtn" class="btn-primary">Print Invoice</button>
+
+          
+
         </form>
       </div>
 
@@ -600,6 +604,37 @@ Taste the tradition. Feel the comfort. Love the spice.
           mainNav.classList.toggle('active');
         });
       }
+       function formatDate(date) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
+
+  function formatTime(date) {
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    return `${hours}:${minutes} ${ampm}`;
+  }
+
+  function setCurrentDateTime() {
+    const now = new Date();
+    const dateField = document.getElementById('datee');
+    const timeField = document.getElementById('timee');
+    
+    if (dateField) dateField.value = formatDate(now);
+    if (timeField) timeField.value = formatTime(now);
+  }
+
+  // Initialize date/time
+  setCurrentDateTime();
+  
+  // Update time every minute
+  setInterval(setCurrentDateTime, 60000);
+
 
       // Initialize QR Code
       function initQRCode() {
@@ -626,6 +661,7 @@ Taste the tradition. Feel the comfort. Love the spice.
       const orderSummary = document.getElementById('order-summary');
       const categoriesBooking = document.getElementById('categories-container-booking');
       const pickerError = document.getElementById('picker-error');
+      const printInvoiceBtn = document.getElementById('printInvoiceBtn');
 
       // WhatsApp number (91 + 9939701019)
       const OWNER_WHATSAPP = '919939701019';
@@ -812,7 +848,16 @@ Taste the tradition. Feel the comfort. Love the spice.
         categoriesBooking.querySelectorAll(selector).forEach(d => d.textContent = cart[name].qty);
       }
 
-      function generateOrderSummary() {
+      function generateOrderSummaryText() {
+        const params = {
+          name: document.getElementById("namee").value.trim(),
+          phone: document.getElementById("phonee").value.trim(),
+          location: document.getElementById("locatione").value.trim(),
+          date: document.getElementById("datee").value.trim(),
+          time: document.getElementById("timee").value.trim(),
+          request: document.getElementById("requestt").value.trim()
+        };
+
         let summary = '';
         let total = 0;
         for (const [item, details] of Object.entries(cart)) {
@@ -822,14 +867,55 @@ Taste the tradition. Feel the comfort. Love the spice.
             total += itemTotal;
           }
         }
+        
         if (!summary) {
+          return '';
+        }
+        
+        const orderId = 'CC' + Date.now().toString().slice(-6);
+        const totalDisplay = '\u20B9' + total;
+
+        const waMessage = `* The Coco Chilli*
+*Main Road Torpa*
+*(Khunti)*
+..................
+* Invoice: ${orderId}
+* Name: ${params.name}
+* Phone: ${params.phone}
+* Location: ${params.location}
+* Date/Time: ${params.date || '-'} ${params.time || '-'}
+
+* Items:
+
+${summary || '-'}
+* Notes: ${params.request || '-'}
+━━━━━━━━━━━━━━━━━━━━
+* Total: ${totalDisplay}
+
+
+Thank you for your visit`;
+
+        return waMessage;
+      }
+
+      function generateOrderSummary() {
+        const waMessage = generateOrderSummaryText();
+        if (!waMessage) {
           orderSummary.textContent = '';
           orderSummaryContainer.style.display = 'none';
           return 0;
         }
-        summary += `\nTotal: \u20B9${total}`;
-        orderSummary.textContent = summary;
+        
+        orderSummary.textContent = waMessage;
         orderSummaryContainer.style.display = 'block';
+        
+        // Calculate total
+        let total = 0;
+        for (const [, details] of Object.entries(cart)) {
+          if (details.qty > 0) {
+            total += details.price * details.qty;
+          }
+        }
         return total;
       }
 
@@ -871,6 +957,21 @@ Taste the tradition. Feel the comfort. Love the spice.
         if (pickerError && hasAtLeastOneItem()) pickerError.style.display = 'none';
       });
 
+      // Print invoice function
+      function printInvoice() {
+        const waMessage = generateOrderSummaryText();
+        
+        if (!waMessage.trim()) {
+          alert("No order details found to print.");
+          return;
+        }
+
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write('<pre>' + waMessage + '</pre>');
+        printWindow.document.close();
+        printWindow.print();
+      }
+
       // Submit -> WhatsApp + status UI
       function handleBookingSubmit(event) {
         event.preventDefault();
@@ -901,50 +1002,7 @@ Taste the tradition. Feel the comfort. Love the spice.
           return;
         }
 
-        const total = generateOrderSummary();
-        const params = {
-          name: nameInput.value.trim(),
-          phone: phoneInput.value.trim(),
-          location: locationInput.value.trim(),
-          date: document.getElementById("datee").value.trim(),
-          time: document.getElementById("timee").value.trim(),
-          request: document.getElementById("requestt").value.trim()
-        };
-
-        // Professional WhatsApp message with rich text
-        const orderItems = Object.entries(cart)
-          .filter(([, d]) => d.qty > 0)
-          .map(([name, d], i) => {
-            const lineTotal = d.qty * d.price;
-            return `${i + 1}. ${name}  —  ${d.qty} × \u20B9${d.price} = \u20B9${lineTotal}`;
-          })
-          .join('\n');
-
-        const orderId = 'CC' + Date.now().toString().slice(-6);
-        const totalDisplay = '\u20B9' + total;
-
-       const waMessage = `* The Coco Chilli*
-*Main Road Torpa*
-*(Khunti)*
-..................
-* Invoice: ${orderId}
-* Name: ${params.name}
-* Phone: ${params.phone}
-* Location: ${params.location}
-* Date/Time: ${params.date || '-'} ${params.time || '-'}
-
-* Items:
-
-${orderItems || '-'}
-* Notes: ${params.request || '-'}
-━━━━━━━━━━━━━━━━━━━━
-* Total: ${totalDisplay}
-
-
-Thank you for your visit`;
-
-
-
+        const waMessage = generateOrderSummaryText();
         const waURL = `https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(waMessage)}`;
 
         // Show "sending" UI, then open WhatsApp and show success + reset
@@ -967,6 +1025,7 @@ Thank you for your visit`;
       }
 
       if (bookingForm) bookingForm.addEventListener('submit', handleBookingSubmit);
+      if (printInvoiceBtn) printInvoiceBtn.addEventListener('click', printInvoice);
 
       // Build menu
       initializeCart();
@@ -984,6 +1043,7 @@ Thank you for your visit`;
         }
       });
     });
+    
   </script>
 </body>
 </html>
