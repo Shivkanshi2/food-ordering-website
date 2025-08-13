@@ -290,8 +290,13 @@
     <div class="wrap">
       <h2>About Us</h2>
       <p>
-        <span id="creative" class="flowing-light-border">THE COCO CHILLI</span>
-        is known for creating unforgettable food experiences. We believe food is therapy — our chefs use the freshest ingredients and traditional recipes to put a smile on your face.
+        <span id="creative" class="flowing-light-border"> Welcome to The Coco Chilli</span>
+       
+Nestled in the heart of Jharkhand, The Coco Chilli is more than just a café—it’s an experience. Inspired by the rustic charm of our forests and the warmth of village life, we bring you a fusion of authentic flavors, fresh ingredients, and a cozy wooden ambience.
+
+From hearty local delicacies to global favorites, every dish here is crafted with love, a touch of spice, and a whole lot of soul. Whether you’re here for a quick coffee, a leisurely meal, or a celebration with friends, The Coco Chilli is your go-to spot for good food, good vibes, and great memories.
+
+Taste the tradition. Feel the comfort. Love the spice.
       </p>
     </div>
   </section>
@@ -487,7 +492,7 @@
           <div id="qr-code" aria-label="QR code to open ordering section"></div>
           <div class="qr-caption">Scan to open order page directly</div>
         </div>
-<h2>Order your favourites food here</h2>
+<h2>Order your favourites food from here</h2>
         <form id="booking-form" class="booking-form" novalidate>
           <div class="form-row">
             <input type="text" name="name" placeholder="Your Name" id="namee" required>
@@ -518,7 +523,7 @@
           <textarea name="message" placeholder="Special Requests (optional)" id="requestt"></textarea>
 
           <div class="form-actions" style="margin-top: 12px;">
-            <button type="submit" class="btn-primary">Book Now</button>
+            <button type="submit" class="btn-primary">Order Now</button>
             <span id="booking-status" class="booking-status" aria-live="polite"></span>
           </div>
         </form>
@@ -531,22 +536,17 @@
         Jharkhand
         </p>
 
-        <p><strong>Email Id:</strong><br>bhardwajkumar02@gamil.com</p>
+        <p><strong>Email Id:</strong><br>bhardwajkumar0.2@gamil.com</p>
 
-        <p><strong>Call Us Now</strong><br>
-           +91 9939701019, 
+        <p><strong>Contact</strong><br>
+           +91 9939701019 
         </p>
 
         <div class="opening-card">
           <h4>Opening Times</h4>
           <ul>
-            <li>Mon: 8:00 AM – 10:00 PM</li>
-            <li>Tue: 8:00 AM – 10:00 PM</li>
-            <li>Wed: 8:00 AM – 10:00 PM</li>
-            <li>Thu: 8:00 AM – 10:00 PM </li>
-            <li>Fri: 8:00 AM – 10:00 PM</li>
-            <li>Sat: 8:00 AM – 10:00 PM</li>
-            <li>Sun: 8:00 AM – 10:00 PM</li>
+            <li>Daily: 9:00 AM – 8:00 PM</li>
+            
           </ul>
         </div>
       </aside>
@@ -569,12 +569,12 @@
 
         <div class="card">
           <h4>Email</h4>
-          <p>bhardwajkumar02@gmail.com</p>
+          <p>bhardwajkumar0.2@gmail.com</p>
         </div>
 
         <div class="card">
           <h4>Phone</h4>
-          <p> Main Road Torpa Near Kara Road<br>+91 9939701019,</p>
+          <p>+91 9939701019</p>
         </div>
       </div>
 
@@ -591,11 +591,7 @@
     <div class="wrap">
       <div class="footer-inner">
         <div>© 2025 The Coco Chilli. All Rights Reserved. Creator: ShivKanshi</div>
-        <div class="footer-links">
-          <a href="#home">Home</a> |
-          <a href="#about">About</a> |
-          <a href="#menu">Menu</a> |
-          <a href="#contact">Contact</a>
+    
         </div>
       </div>
     </div>
@@ -933,22 +929,25 @@
         const orderId = 'CC' + Date.now().toString().slice(-6);
         const totalDisplay = '\u20B9' + total;
 
-        const waMessage =
-`*🍽️ The Coco Chilli — New Order*
-━━━━━━━━━━━━━━━━━━━━
-*👤 Name:* ${params.name}
-*📞 Phone:* ${params.phone}
-*📍 Location:* ${params.location}
-*🗓️ Date/Time:* ${params.date || '-'} ${params.time || '-'}
+       const waMessage = `* The Coco Chilli — New Order*
+*Main Road Torpa*
+*Khunti*
+..................
+* Invoice:* ${orderId}
+* Name:* ${params.name}
+* Phone:* ${params.phone}
+* Location:* ${params.location}
+* Date/Time:* ${params.date || '-'} ${params.time || '-'}
 
-*🧾 Items:*
-${orderItems || '-' }
+* Items:*
+${orderItems || '-'}
 ━━━━━━━━━━━━━━━━━━━━
-*💰 Total:* ${totalDisplay}
-*📝 Notes:* ${params.request || '-'}
+* Total:* ${totalDisplay}
+* Notes:* ${params.request || '-'}
 
-*🆔 Order ID:* ${orderId}
-Thank you for ordering with The Coco Chilli! 🙏`;
+Thank you for your visit...`;
+
+
 
         const waURL = `https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(waMessage)}`;
 
