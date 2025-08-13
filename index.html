@@ -929,23 +929,25 @@ Taste the tradition. Feel the comfort. Love the spice.
         const orderId = 'CC' + Date.now().toString().slice(-6);
         const totalDisplay = '\u20B9' + total;
 
-       const waMessage = `* The Coco Chilli — New Order*
+       const waMessage = `* The Coco Chilli*
 *Main Road Torpa*
-*Khunti*
+*(Khunti)*
 ..................
-* Invoice:* ${orderId}
-* Name:* ${params.name}
-* Phone:* ${params.phone}
-* Location:* ${params.location}
-* Date/Time:* ${params.date || '-'} ${params.time || '-'}
+* Invoice: ${orderId}
+* Name: ${params.name}
+* Phone: ${params.phone}
+* Location: ${params.location}
+* Date/Time: ${params.date || '-'} ${params.time || '-'}
 
-* Items:*
+* Items:
+
 ${orderItems || '-'}
+* Notes: ${params.request || '-'}
 ━━━━━━━━━━━━━━━━━━━━
-* Total:* ${totalDisplay}
-* Notes:* ${params.request || '-'}
+* Total: ${totalDisplay}
 
-Thank you for your visit...`;
+
+Thank you for your visit`;
 
 
 
