@@ -33,7 +33,7 @@
     }
 
     /* Anchors offset for fixed header */
-    #home, #about, #menu, #gallery, #booking, #contact { scroll-margin-top: calc(var(--header-h) + 8px); }
+    #home, #about, #menu, #gallery, #booking, #contact, #manager { scroll-margin-top: calc(var(--header-h) + 8px); }
 
     img, iframe { max-width: 100%; height: auto; }
 
@@ -70,7 +70,7 @@
     .main-nav ul li a {
       color: #fff; font-weight: 700; padding: 8px 12px; border-radius: 6px; text-transform: uppercase;
       font-size: 13px; letter-spacing: 1px; transition: background-color var(--transition-fast), color var(--transition-fast);
-      text-shadow: 0 0 2px rgba(0,0,0,0.7); word-break: break-word;
+      text-shadow: 0 0 2px rgba(0,0,0,0.7)); word-break: break-word;
     }
     .main-nav ul li a:hover, .main-nav ul li a:focus { background: var(--gold); color: var(--maroon); box-shadow: 0 4px 12px rgba(233,201,107,0.7); outline: none; }
 
@@ -223,6 +223,101 @@
       content: " *";
       color: #b00020;
     }
+    
+    /* Manager Section */
+    .manager-section {
+      background: #f9f9f9;
+      padding: 40px 0;
+    }
+    
+    .manager-login {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .manager-login h2 {
+      color: var(--maroon);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .login-form input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #c0c0c0;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    
+    .login-form button {
+      width: 100%;
+      background: var(--maroon);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 8px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    
+    .login-error {
+      color: #b00020;
+      font-weight: 700;
+      margin-top: 15px;
+      text-align: center;
+      display: none;
+    }
+    
+    .manager-actions {
+      display: none;
+      margin-top: 30px;
+      text-align: center;
+    }
+    
+    .manager-actions h3 {
+      color: var(--maroon);
+      margin-bottom: 20px;
+    }
+    
+    .manager-btn {
+      background: var(--maroon);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 16px;
+      margin: 0 10px 10px;
+      display: inline-block;
+    }
+    
+    .manager-btn:hover {
+      background: #7a1616;
+    }
+    
+    /* Manager Order Section */
+    .manager-order-section {
+      display: none;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+    
+    .manager-order-section h2 {
+      color: var(--maroon);
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
     /* Responsive */
     @media (max-width: 820px){
@@ -244,6 +339,12 @@
       .nav-toggle{ display:block; }
       .hero{ height: 240px; }
       .hero-title{ font-size: 28px; }
+      
+      .manager-btn {
+        display: block;
+        width: 100%;
+        margin: 0 0 10px 0;
+      }
     }
   </style>
 
@@ -272,6 +373,7 @@
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#booking">Order Your Favourites</a></li>
           <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#manager">Manager</a></li>
         </ul>
       </nav>
 
@@ -526,10 +628,7 @@ Taste the tradition. Feel the comfort. Love the spice.
           <div class="form-actions" style="margin-top: 12px;">
             <button type="submit" class="btn-primary">Order Now</button>
             <span id="booking-status" class="booking-status" aria-live="polite"></span>
-          </div><br>
-          <button type="button" id="printInvoiceBtn" class="btn-primary">Print Invoice</button>
-
-          
+          </div>
 
         </form>
       </div>
@@ -583,6 +682,70 @@ Taste the tradition. Feel the comfort. Love the spice.
       </div>
     </div>
   </section>
+  
+  <!-- Manager Section -->
+  <section id="manager" class="section manager-section">
+    <div class="wrap">
+      <div class="manager-login">
+        <h2>Manager Login</h2>
+        <form id="login-form" class="login-form">
+          <input type="email" id="manager-email" placeholder="Email" required>
+          <input type="password" id="manager-password" placeholder="Password" required>
+          <button type="submit" class="btn-primary">Login</button>
+          <div id="login-error" class="login-error">Invalid email or password</div>
+        </form>
+        
+        <div id="manager-actions" class="manager-actions">
+          <h3>Manager Actions</h3>
+          <button id="manager-order-btn" class="manager-btn">Order Your Favourites</button>
+          <button id="manager-print-btn" class="manager-btn">Print Invoice</button>
+        </div>
+        
+        <!-- Manager Order Section (hidden by default) -->
+        <div id="manager-order-section" class="manager-order-section">
+          <h2>Order Your Favourites</h2>
+          <form id="manager-order-form">
+            <div class="form-row">
+              <input type="text" name="name" placeholder="Customer Name" id="manager-name">
+            </div>
+            <div class="form-row">
+              <input type="tel" name="phone" placeholder="Phone Number" id="manager-phone">
+              <input type="text" name="location" placeholder="Location" id="manager-location">
+            </div>
+            <div class="form-row">
+              <input type="text" name="date" id="manager-date" readonly>
+              <input type="text" name="time" id="manager-time" readonly>
+            </div>
+
+            <div class="order-picker-block">
+              <div class="order-picker-heading">
+                <span>Select food items</span>
+              </div>
+              <div id="manager-categories-container"></div>
+            </div>
+
+            <div id="manager-order-summary-container" style="display: none;">
+              <h4>Order Summary</h4>
+              <div id="manager-order-summary"></div>
+            </div>
+
+            <textarea name="message" placeholder="Special Requests (optional)" id="manager-request"></textarea>
+
+            <div class="form-actions" style="margin-top: 12px;">
+               <div id="manager-actions" class="manager-actions">
+          <h3>Manager Actions</h3>
+          <button id="manager-order-btn" class="manager-btn">Order Your Favourites</button>
+          <button id="manager-print-btn" class="manager-btn">Print Invoice</button>
+        </div>
+              <span id="manager-order-status" class="booking-status" aria-live="polite"></span>
+            </div>
+            
+       
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div class="wrap">
@@ -594,456 +757,6 @@ Taste the tradition. Feel the comfort. Love the spice.
     </div>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Mobile menu toggle
-      const navToggle = document.getElementById('navToggle');
-      const mainNav = document.getElementById('main-nav');
-      if (navToggle && mainNav) {
-        navToggle.addEventListener('click', function() {
-          mainNav.classList.toggle('active');
-        });
-      }
-       function formatDate(date) {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-  }
-
-  function formatTime(date) {
-    let hours = date.getHours();
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    return `${hours}:${minutes} ${ampm}`;
-  }
-
-  function setCurrentDateTime() {
-    const now = new Date();
-    const dateField = document.getElementById('datee');
-    const timeField = document.getElementById('timee');
-    
-    if (dateField) dateField.value = formatDate(now);
-    if (timeField) timeField.value = formatTime(now);
-  }
-
-  // Initialize date/time
-  setCurrentDateTime();
-  
-  // Update time every minute
-  setInterval(setCurrentDateTime, 60000);
-
-
-      // Initialize QR Code
-      function initQRCode() {
-        try {
-          // Create QR code pointing directly to your booking section
-          new QRCode(document.getElementById('qr-code'), {
-            text: "https://meek-baklava-b8a10e.netlify.app/#booking",
-            width: 140,
-            height: 140,
-            colorDark: "#8b1d1d",  // Your maroon color
-            colorLight: "#ffffff",  // White background
-            correctLevel: QRCode.CorrectLevel.H
-          });
-        } catch (error) {
-          console.error('Error generating QR code:', error);
-          // Fallback - show a message if QR code fails
-          document.getElementById('qr-code').innerHTML = '<p>Scan to order</p>';
-        }
-      }
-
-      const bookingForm = document.getElementById('booking-form');
-      const bookingStatus = document.getElementById('booking-status');
-      const orderSummaryContainer = document.getElementById('order-summary-container');
-      const orderSummary = document.getElementById('order-summary');
-      const categoriesBooking = document.getElementById('categories-container-booking');
-      const pickerError = document.getElementById('picker-error');
-      const printInvoiceBtn = document.getElementById('printInvoiceBtn');
-
-      // WhatsApp number (91 + 9939701019)
-      const OWNER_WHATSAPP = '919939701019';
-
-      // Menu Data
-      const menuData = {
-        "Classic Hot & Cold Drinks": [
-          {name: "Chocolate super shake", price: 38},
-          {name: "Strawberries Super Shake", price: 38},
-          {name: "Orange Booster", price: 45},
-          {name: "Purple Power House", price: 47},
-          {name: "Signature cold coffee", price: 25},
-          {name: "Fresh Lime Soda", price: 25},
-          {name: "Masala cold-drink", price: 25},
-          {name: "Hot Chocolate", price: 35},
-          {name: "Tea / Coffee", price: 10}
-          
-        ],
-        "Starters": [
-          {name: "Crispy chicken fried", price: 62},
-          {name: "Chicken Lollipop", price: 55},
-          {name: "Chicken Wings", price: 55},
-          {name: "Chicken Cheese-Balls", price: 47},
-          {name: "Chicken Fingers", price: 45},
-          {name: "Vegetable Spring-Roll", price: 30},
-          {name: "Potato Cheese Shotz", price: 35}
-        ],
-        "Burger & Fries": [
-          {name: "Veg Cheese Burger", price: 40},
-          {name: "Paneer Cheese Burger", price: 45},
-          {name: "Chicken Cheese Burger", price: 45},
-          {name: "Peri-peri French Fries", price: 25}
-        ],
-        "Sandwiches": [
-          {name: "Tomatoes & Cheese grill", price: 35},
-          {name: "Chicken tikka Sandwich", price: 40}
-        ],
-        "Pasta (Veg - Non Veg)": [
-          {name: "White Creamy sauce", price: 65},
-          {name: "Red Basil Sauce Pasta", price: 55}
-        ],
-        "Chinese Cuisine": [
-          {name: "Chicken Chilli (Dry/Gravy)", price: 60},
-          {name: "Chicken Chowmin", price: 50},
-          {name: "Mix Veg Chowmin", price: 40},
-          {name: "Egg Chowmin", price: 45},
-          {name: "Baby-Corn Chilli", price: 50},
-          {name: "Paneer Chilli (Dry/Gravy)", price: 65}
-        ],
-        "Kebabs": [
-          {name: "Malai Paneer Tikka", price: 80},
-          {name: "Afghani Chicken Tikka", price: 90},
-          {name: "Chicken Malai Tikka", price: 90},
-          {name: "Chicken Hariyali Seekh", price: 90},
-          {name: "Chicken Seekh Kebab", price: 90}
-        ],
-        "Fried Rice": [
-          {name: "Vegetable Fried Rice", price: 45},
-          {name: "Chicken Fried Rice", price: 50},
-          {name: "Paneer Fried Rice", price: 50},
-          {name: "Egg Fried Rice", price: 45}
-        ],
-        "Soups": [
-          {name: "Hot & Sour Veg Soup", price: 30},
-          {name: "Hot & Sour Chicken Soup", price: 30},
-          {name: "Sweet Corn Soup", price: 30}
-        ],
-        "Fast-food Rolls": [
-          {name: "Paneer Tikka Roll", price: 50},
-          {name: "Veg Kathi Roll", price: 30},
-          {name: "Chicken Roll", price: 50},
-          {name: "Egg Roll", price: 40}
-        ],
-        "Breakfast": [
-          {name: "Idli", price: 25},
-          {name: "Chole Bhature", price: 60},
-          {name: "Masala Dhosa", price: 50}
-        ],
-        "Currys (1 Portion)": [
-          {name: "Mix Veg Kadhai", price: 40},
-          {name: "Malai Kofta", price: 55},
-          {name: "Paneer Tikka Masala", price: 80},
-          {name: "Paneer Do-Pyaza", price: 70},
-          {name: "Dal Tadka/Fry", price: 35},
-          {name: "Dal Makhani", price: 45},
-          {name: "Butter Chicken", price: 100},
-          {name: "Chicken Tikka Masala", price: 100},
-          {name: "Chicken Curry", price: 90},
-          {name: "Egg Curry", price: 60}
-        ],
-        "Indian Bread": [
-          {name: "Chapatti", price: 10},
-          {name: "Butter Naan", price: 15},
-          {name: "Garlic Naan", price: 25},
-          {name: "Stuffed Kulcha", price: 30}
-        ]
-      };
-
-      // Cart
-      const cart = {};
-      function initializeCart() {
-        for (const category in menuData) {
-          menuData[category].forEach(item => {
-            if (!cart[item.name]) {
-              cart[item.name] = { price: item.price, qty: 0 };
-            }
-          });
-        }
-      }
-
-      function buildCategories(container) {
-        container.innerHTML = '';
-        Object.entries(menuData).forEach(([category, items]) => {
-          const catDiv = document.createElement('div');
-          catDiv.className = 'category';
-
-          const heading = document.createElement('div');
-          heading.className = 'category-heading';
-          heading.innerHTML = `<span>${category}</span><span class="toggle-icon" aria-hidden="true">+</span>`;
-
-          const itemsDiv = document.createElement('div');
-          itemsDiv.className = 'category-items';
-
-          items.forEach(food => {
-            const foodDiv = document.createElement('div');
-            foodDiv.className = 'food-item';
-            foodDiv.setAttribute('data-name', food.name);
-
-            const nameSpan = document.createElement('span');
-            nameSpan.className = 'food-name';
-            nameSpan.textContent = food.name;
-
-            const priceSpan = document.createElement('span');
-            priceSpan.className = 'food-price';
-            priceSpan.textContent = food.price; // Rupee hex added via CSS ::before
-
-            const qtyControls = document.createElement('div');
-            qtyControls.className = 'qty-controls';
-
-            const minusBtn = document.createElement('button');
-            minusBtn.className = 'qty-btn';
-            minusBtn.setAttribute('type', 'button');
-            minusBtn.setAttribute('data-action', 'minus');
-            minusBtn.setAttribute('data-name', food.name);
-            minusBtn.textContent = '−';
-
-            const qtyDisplay = document.createElement('span');
-            qtyDisplay.className = 'qty-display';
-            qtyDisplay.setAttribute('data-name', food.name);
-            qtyDisplay.textContent = 0;
-
-            const plusBtn = document.createElement('button');
-            plusBtn.className = 'qty-btn';
-            plusBtn.setAttribute('type', 'button');
-            plusBtn.setAttribute('data-action', 'plus');
-            plusBtn.setAttribute('data-name', food.name);
-            plusBtn.textContent = '+';
-
-            qtyControls.appendChild(minusBtn);
-            qtyControls.appendChild(qtyDisplay);
-            qtyControls.appendChild(plusBtn);
-
-            foodDiv.appendChild(nameSpan);
-            foodDiv.appendChild(priceSpan);
-            foodDiv.appendChild(qtyControls);
-            itemsDiv.appendChild(foodDiv);
-          });
-
-          heading.addEventListener('click', () => {
-            const icon = heading.querySelector('.toggle-icon');
-            const isOpen = itemsDiv.style.display === 'block';
-            itemsDiv.style.display = isOpen ? 'none' : 'block';
-            icon.textContent = isOpen ? '+' : '−';
-          });
-
-          catDiv.appendChild(heading);
-          catDiv.appendChild(itemsDiv);
-          container.appendChild(catDiv);
-        });
-      }
-
-      function updateQtyDisplay(name) {
-        const selector = `.qty-display[data-name="${CSS.escape(name)}"]`;
-        categoriesBooking.querySelectorAll(selector).forEach(d => d.textContent = cart[name].qty);
-      }
-
-      function generateOrderSummaryText() {
-        const params = {
-          name: document.getElementById("namee").value.trim(),
-          phone: document.getElementById("phonee").value.trim(),
-          location: document.getElementById("locatione").value.trim(),
-          date: document.getElementById("datee").value.trim(),
-          time: document.getElementById("timee").value.trim(),
-          request: document.getElementById("requestt").value.trim()
-        };
-
-        let summary = '';
-        let total = 0;
-        for (const [item, details] of Object.entries(cart)) {
-          if (details.qty > 0) {
-            const itemTotal = details.price * details.qty;
-            summary += `${item} (${details.qty} x \u20B9${details.price}) = \u20B9${itemTotal}\n`;
-            total += itemTotal;
-          }
-        }
-        
-        if (!summary) {
-          return '';
-        }
-        
-        const orderId = 'CC' + Date.now().toString().slice(-6);
-        const totalDisplay = '\u20B9' + total;
-
-        const waMessage = `* The Coco Chilli*
-*Main Road Torpa*
-*(Khunti)*
-..................
-* Invoice: ${orderId}
-* Name: ${params.name}
-* Phone: ${params.phone}
-* Location: ${params.location}
-* Date/Time: ${params.date || '-'} ${params.time || '-'}
-
-* Items:
-
-${summary || '-'}
-* Notes: ${params.request || '-'}
-━━━━━━━━━━━━━━━━━━━━
-* Total: ${totalDisplay}
-
-
-Thank you for your visit`;
-
-        return waMessage;
-      }
-
-      function generateOrderSummary() {
-        const waMessage = generateOrderSummaryText();
-        if (!waMessage) {
-          orderSummary.textContent = '';
-          orderSummaryContainer.style.display = 'none';
-          return 0;
-        }
-        
-        orderSummary.textContent = waMessage;
-        orderSummaryContainer.style.display = 'block';
-        
-        // Calculate total
-        let total = 0;
-        for (const [, details] of Object.entries(cart)) {
-          if (details.qty > 0) {
-            total += details.price * details.qty;
-          }
-        }
-        return total;
-      }
-
-      function hasAtLeastOneItem() {
-        return Object.values(cart).some(v => v.qty > 0);
-      }
-
-      // Status helpers
-      function setStatus(type, text, showSpinner=false) {
-        if (!bookingStatus) return;
-        bookingStatus.className = `booking-status ${type}`;
-        bookingStatus.textContent = '';
-        if (showSpinner) {
-          const sp = document.createElement('span');
-          sp.className = 'spinner';
-          bookingStatus.appendChild(sp);
-        }
-        const msg = document.createElement('span');
-        msg.textContent = text;
-        bookingStatus.appendChild(msg);
-      }
-
-      // +/- events (delegation)
-      categoriesBooking.addEventListener('click', (e) => {
-        const btn = e.target.closest('button.qty-btn');
-        if (!btn) return;
-        const action = btn.getAttribute('data-action');
-        const name = btn.getAttribute('data-name');
-        if (!name || !cart[name]) return;
-
-        if (action === 'plus') {
-          cart[name].qty++;
-        } else if (action === 'minus' && cart[name].qty > 0) {
-          cart[name].qty--;
-        }
-        updateQtyDisplay(name);
-        generateOrderSummary();
-
-        if (pickerError && hasAtLeastOneItem()) pickerError.style.display = 'none';
-      });
-
-      // Print invoice function
-      function printInvoice() {
-        const waMessage = generateOrderSummaryText();
-        
-        if (!waMessage.trim()) {
-          alert("No order details found to print.");
-          return;
-        }
-
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write('<pre>' + waMessage + '</pre>');
-        printWindow.document.close();
-        printWindow.print();
-      }
-
-      // Submit -> WhatsApp + status UI
-      function handleBookingSubmit(event) {
-        event.preventDefault();
-        
-        // Validate required fields
-        const nameInput = document.getElementById("namee");
-        const phoneInput = document.getElementById("phonee");
-        const locationInput = document.getElementById("locatione");
-        
-        if (!nameInput.value.trim()) {
-          nameInput.focus();
-          return;
-        }
-        
-        if (!phoneInput.value.trim()) {
-          phoneInput.focus();
-          return;
-        }
-        
-        if (!locationInput.value.trim()) {
-          locationInput.focus();
-          return;
-        }
-
-        if (!hasAtLeastOneItem()) {
-          if (pickerError) pickerError.style.display = 'block';
-          categoriesBooking.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          return;
-        }
-
-        const waMessage = generateOrderSummaryText();
-        const waURL = `https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(waMessage)}`;
-
-        // Show "sending" UI, then open WhatsApp and show success + reset
-        setStatus('status--sending', 'Opening WhatsApp...', true);
-
-        const opened = window.open(waURL, '_blank');
-        if (!opened) {
-          // Popup blocked fallback
-          window.location.href = waURL;
-        }
-
-        setTimeout(() => {
-          setStatus('status--success', 'WhatsApp opened. Please send your order there.');
-          if (bookingForm) bookingForm.reset();
-          // Reset cart
-          for (const item in cart) cart[item].qty = 0;
-          categoriesBooking.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
-          generateOrderSummary();
-        }, 600);
-      }
-
-      if (bookingForm) bookingForm.addEventListener('submit', handleBookingSubmit);
-      if (printInvoiceBtn) printInvoiceBtn.addEventListener('click', printInvoice);
-
-      // Build menu
-      initializeCart();
-      buildCategories(categoriesBooking);
-      
-      // Initialize QR code after everything is loaded
-      initQRCode();
-
-      // Close mobile menu on nav link
-      document.addEventListener('click', (e) => {
-        const link = e.target.closest('a[href^="#"]');
-        if (!link) return;
-        if (window.innerWidth <= 620 && mainNav && mainNav.classList.contains('active')) {
-          setTimeout(() => mainNav.classList.remove('active'), 200);
-        }
-      });
-    });
-    
-  </script>
+<script src="./script.js"></script>
 </body>
 </html>
