@@ -1,5 +1,4 @@
-
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
       // Mobile menu toggle
       const navToggle = document.getElementById('navToggle');
       const mainNav = document.getElementById('main-nav');
@@ -49,7 +48,7 @@
         try {
           // Create QR code pointing directly to your booking section
           new QRCode(document.getElementById('qr-code'), {
-            text: "https://meek-baklava-b8a10e.netlify.app/#booking",
+            text:"https://thecocochilli.netlify.app#booking",
             width: 140,
             height: 140,
             colorDark: "#8b1d1d",  // Your maroon color
@@ -85,103 +84,128 @@
       const managerOrderSummaryContainer = document.getElementById('manager-order-summary-container');
       const managerOrderStatus = document.getElementById('manager-order-status');
       const managerSubmitBtn = document.getElementById('manager-submit-btn');
+      const closeManagerBtn = document.getElementById('close-manager');
+      const managerSection = document.querySelector('.manager-section');
 
       // WhatsApp number (91 + 9939701019)
       const OWNER_WHATSAPP = '919939701019';
 
       // Menu Data
-      const menuData = {
-        "Classic Hot & Cold Drinks": [
-          {name: "Chocolate super shake", price: 38},
-          {name: "Strawberries Super Shake", price: 38},
-          {name: "Orange Booster", price: 45},
-          {name: "Purple Power House", price: 47},
-          {name: "Signature cold coffee", price: 25},
-          {name: "Fresh Lime Soda", price: 25},
-          {name: "Masala cold-drink", price: 25},
-          {name: "Hot Chocolate", price: 35},
-          {name: "Tea / Coffee", price: 10}
-          
-        ],
-        "Starters": [
-          {name: "Crispy chicken fried", price: 62},
-          {name: "Chicken Lollipop", price: 55},
-          {name: "Chicken Wings", price: 55},
-          {name: "Chicken Cheese-Balls", price: 47},
-          {name: "Chicken Fingers", price: 45},
-          {name: "Vegetable Spring-Roll", price: 30},
-          {name: "Potato Cheese Shotz", price: 35}
-        ],
-        "Burger & Fries": [
-          {name: "Veg Cheese Burger", price: 40},
-          {name: "Paneer Cheese Burger", price: 45},
-          {name: "Chicken Cheese Burger", price: 45},
-          {name: "Peri-peri French Fries", price: 25}
-        ],
-        "Sandwiches": [
-          {name: "Tomatoes & Cheese grill", price: 35},
-          {name: "Chicken tikka Sandwich", price: 40}
-        ],
-        "Pasta (Veg - Non Veg)": [
-          {name: "White Creamy sauce", price: 65},
-          {name: "Red Basil Sauce Pasta", price: 55}
-        ],
-        "Chinese Cuisine": [
-          {name: "Chicken Chilli (Dry/Gravy)", price: 60},
-          {name: "Chicken Chowmin", price: 50},
-          {name: "Mix Veg Chowmin", price: 40},
-          {name: "Egg Chowmin", price: 45},
-          {name: "Baby-Corn Chilli", price: 50},
-          {name: "Paneer Chilli (Dry/Gravy)", price: 65}
-        ],
-        "Kebabs": [
-          {name: "Malai Paneer Tikka", price: 80},
-          {name: "Afghani Chicken Tikka", price: 90},
-          {name: "Chicken Malai Tikka", price: 90},
-          {name: "Chicken Hariyali Seekh", price: 90},
-          {name: "Chicken Seekh Kebab", price: 90}
-        ],
-        "Fried Rice": [
-          {name: "Vegetable Fried Rice", price: 45},
-          {name: "Chicken Fried Rice", price: 50},
-          {name: "Paneer Fried Rice", price: 50},
-          {name: "Egg Fried Rice", price: 45}
-        ],
-        "Soups": [
-          {name: "Hot & Sour Veg Soup", price: 30},
-          {name: "Hot & Sour Chicken Soup", price: 30},
-          {name: "Sweet Corn Soup", price: 30}
-        ],
-        "Fast-food Rolls": [
-          {name: "Paneer Tikka Roll", price: 50},
-          {name: "Veg Kathi Roll", price: 30},
-          {name: "Chicken Roll", price: 50},
-          {name: "Egg Roll", price: 40}
-        ],
-        "Breakfast": [
-          {name: "Idli", price: 25},
-          {name: "Chole Bhature", price: 60},
-          {name: "Masala Dhosa", price: 50}
-        ],
-        "Currys (1 Portion)": [
-          {name: "Mix Veg Kadhai", price: 40},
-          {name: "Malai Kofta", price: 55},
-          {name: "Paneer Tikka Masala", price: 80},
-          {name: "Paneer Do-Pyaza", price: 70},
-          {name: "Dal Tadka/Fry", price: 35},
-          {name: "Dal Makhani", price: 45},
-          {name: "Butter Chicken", price: 100},
-          {name: "Chicken Tikka Masala", price: 100},
-          {name: "Chicken Curry", price: 90},
-          {name: "Egg Curry", price: 60}
-        ],
-        "Indian Bread": [
-          {name: "Chapatti", price: 10},
-          {name: "Butter Naan", price: 15},
-          {name: "Garlic Naan", price: 25},
-          {name: "Stuffed Kulcha", price: 30}
-        ]
-      };
+// Menu Data (for dynamic rendering if needed)
+// Corrected Menu Data (prices synced with HTML)
+const menuData = {
+  "Classic Drinks": [
+    { name: "Chocolate super shake", price: 55 },
+    { name: "Strawberry super shake", price: 55 },
+    { name: "Vanilla Super Shake", price: 50 },
+    { name: "Oreo Crunch Shake", price: 60 },
+    { name: "Signature cold coffee", price: 45 },
+    { name: "Fresh Lime Soda", price: 30 },
+    { name: "Kitkat Shake", price: 65 },   // fixed
+    { name: "Hot Chocolate", price: 45 },
+    { name: "Tea", price: 10 },            // fixed
+    { name: "Coffee", price: 25 }
+  ],
+  "Starters": [
+    { name: "KFC Crispy fried chicken", price: 99 },
+    { name: "Chicken Popcorn", price: 65 },
+    { name: "Chicken Nuggets", price: 55 },
+    { name: "Potato Cheese Shotz", price: 45 }
+  ],
+  "Burger & Fries": [
+    { name: "BK Veg Burger", price: 40 },
+    { name: "Paneer Cheese Burger", price: 48 },
+    { name: "Chicken Cheese Burger", price: 50 },
+    { name: "French Fries / peri-peri", price: 28 }  // fixed
+  ],
+  "Sandwich": [
+    { name: "Veg Grilled Sandwich", price: 40 },
+    { name: "Paneer cheese Sandwich", price: 48 },
+    { name: "Chicken cheese Sandwich", price: 50 }
+  ],
+  "Pasta": [
+    { name: "White Creamy sauce", price: 65 }, // fixed
+    { name: "Red Basil Sauce Pasta", price: 55 }
+  ],
+  "Chinese": [
+    { name: "Chicken Coco Chilli", price: 65 },
+    { name: "Chicken Chilli Boneless", price: 75 },
+    { name: "Paneer Chilli", price: 60 },
+    { name: "Veg Chowmin", price: 40 },
+    { name: "Mixed Chowmin", price: 50 } // fixed
+  ],
+  "Pizza": [
+    { name: "Veggie Delight", price: 70 },
+    { name: "Chicken Cheese Pizza", price: 90 },
+    { name: "Chicken Cheese Supreme", price: 99 } // fixed
+  ],
+  "Soups": [
+    { name: "Hot & Sour Veg Soup", price: 35 }, // fixed
+    { name: "Hot & Sour Chicken Soup", price: 40 },
+    { name: "Sweet Corn Soup", price: 40 } // fixed
+  ],
+  "Momos": [
+    { name: "Veg Steam Momo", price: 70 }, // fixed
+    { name: "Chicken Steam Momo", price: 80 }, // fixed
+    { name: "Paneer steam Momo", price: 80 } // fixed
+  ],
+  "Kebabs": [
+    { name: "Paneer Malai Tikka", price: 110 },
+    { name: "Chicken Seekh Kebab", price: 120 },
+    { name: "Chicken Malai Tikka", price: 130 }
+  ],
+  "Rolls": [
+    { name: "Paneer Cheese Roll", price: 50 }, // fixed
+    { name: "Veg Kathi cheese Roll", price: 30 }, // fixed
+    { name: "Chicken cheese Roll", price: 50 },
+    { name: "Egg Roll", price: 40 }
+  ],
+  "Breakfast": [
+    { name: "Idli 3pcs", price: 25 },
+    { name: "Masala Dosh", price: 50 },
+    { name: "Chole Bhuture", price: 55 }
+  ],
+  "Veg & Non-veg Curry": [
+    { name: "Mix Veg", price: 40 },
+    { name: "Malai Kofta", price: 55 },
+    { name: "Paneer Butter Masala", price: 60 }, // fixed
+    { name: "Paneer Sahi-Korma", price: 60 },
+    { name: "Mushroom Masala", price: 60 },
+    { name: "Dal Fry / Dal Tadka", price: 35 },
+    { name: "Dal Makhani", price: 45 },
+    { name: "Butter Chicken", price: 68 }, // fixed
+    { name: "Chicken Curry", price: 68 }, // fixed
+    { name: "Egg Curry", price: 45 }, // fixed
+    { name: "Mutton Curry", price: 120 }
+  ],
+  "Fried Rice": [
+    { name: "Veg-Fried Rice", price: 40 },
+    { name: "Chicken Fried Rice", price: 50 },
+    { name: "Paneer Fried Rice", price: 48 }, // fixed
+    { name: "Egg Fried Rice", price: 45 }
+  ],
+  "Rice/Roti": [
+    { name: "Plain Steam Rice", price: 25 }, // fixed
+    { name: "Jeera Fried Rice", price: 30 }, // fixed
+    { name: "Plain Tawa Roti", price: 10 }
+  ],
+  "Biryani": [
+    { name: "Veg Biryani", price: 50 },
+    { name: "Chicken Biryani", price: 70 }
+  ],
+  "Sides Items": [
+    { name: "Special Bundi Raita", price: 20 },
+    { name: "Papad", price: 10 },
+    { name: "Green Salad", price: 25 }, // fixed
+    { name: "Sweet Kheer", price: 30 }, // fixed
+    { name: "Gulab Jamun", price: 15 } // fixed
+  ],
+  "Thali": [
+    { name: "Plain Veg-Thali", price: 50 },
+    { name: "Plain Chicken Thali", price: 70 }, // fixed
+    { name: "Plain Mutton Thali", price: 130 }
+  ]
+};
 
       // Carts
       const cart = {};
@@ -277,13 +301,33 @@
       }
 
       function generateOrderSummaryText(formPrefix, cartData) {
+        // For manager section, use empty values for customer info
+        let name, phone, location;
+        
+        if (formPrefix === 'manager') {
+          // For manager section, use empty/default values
+          name = "Walk-in Customer";
+          phone = "N/A";
+          location = "Restaurant";
+        } else {
+          // For regular booking form, get values from form fields
+          name = document.getElementById('namee').value.trim();
+          phone = document.getElementById('phonee').value.trim();
+          location = document.getElementById('locatione').value.trim();
+        }
+        
+        // Get date/time and request fields
+        const dateField = formPrefix ? `${formPrefix}-date` : 'datee';
+        const timeField = formPrefix ? `${formPrefix}-time` : 'timee';
+        const requestField = formPrefix ? `${formPrefix}-request` : 'requestt';
+
         const params = {
-          name: document.getElementById(`${formPrefix}-name`).value.trim(),
-          phone: document.getElementById(`${formPrefix}-phone`).value.trim(),
-          location: document.getElementById(`${formPrefix}-location`).value.trim(),
-          date: document.getElementById(`${formPrefix}-date`).value.trim(),
-          time: document.getElementById(`${formPrefix}-time`).value.trim(),
-          request: document.getElementById(`${formPrefix}-request`).value.trim()
+          name: name,
+          phone: phone,
+          location: location,
+          date: document.getElementById(dateField).value.trim(),
+          time: document.getElementById(timeField).value.trim(),
+          request: document.getElementById(requestField).value.trim()
         };
 
         let summary = '';
@@ -321,7 +365,7 @@ ${summary || '-'}
 * Total: ${totalDisplay}
 
 
-Thank you for your visit`;
+Thank you`;
 
         return waMessage;
       }
@@ -416,51 +460,40 @@ Thank you for your visit`;
       function handleBookingSubmit(event, formPrefix, cartData, statusElement) {
         event.preventDefault();
         
-        // For manager form, skip validation
-        if (formPrefix === 'manager') {
-          const waMessage = generateOrderSummaryText(formPrefix, cartData);
-          const waURL = `https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(waMessage)}`;
-
-          setStatus(statusElement, 'status--sending', 'Opening WhatsApp...', true);
-
-          const opened = window.open(waURL, '_blank');
-          if (!opened) {
-            window.location.href = waURL;
+        // For manager section, skip the customer info validation
+        if (formPrefix !== 'manager') {
+          // Get the correct form elements based on formPrefix
+          const nameInput = document.getElementById(formPrefix ? `${formPrefix}-name` : 'namee');
+          const phoneInput = document.getElementById(formPrefix ? `${formPrefix}-phone` : 'phonee');
+          const locationInput = document.getElementById(formPrefix ? `${formPrefix}-location` : 'locatione');
+          
+          if (!nameInput.value.trim()) {
+            nameInput.focus();
+            setStatus(statusElement, 'status--error', '');
+            return;
           }
-
-          setTimeout(() => {
-            setStatus(statusElement, 'status--success', 'WhatsApp opened. Please send your order there.');
-            // Reset manager cart
-            for (const item in managerCart) managerCart[item].qty = 0;
-            managerCategories.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
-            generateOrderSummary('manager', managerCart, managerOrderSummary, managerOrderSummaryContainer);
-          }, 600);
-          return;
-        }
-        
-        // For customer form, do validation
-        const nameInput = document.getElementById(`${formPrefix}-name`);
-        const phoneInput = document.getElementById(`${formPrefix}-phone`);
-        const locationInput = document.getElementById(`${formPrefix}-location`);
-        
-        if (!nameInput.value.trim()) {
-          nameInput.focus();
-          return;
-        }
-        
-        if (!phoneInput.value.trim()) {
-          phoneInput.focus();
-          return;
-        }
-        
-        if (!locationInput.value.trim()) {
-          locationInput.focus();
-          return;
+          
+          if (!phoneInput.value.trim()) {
+            phoneInput.focus();
+            setStatus(statusElement, 'status--error', '');
+            return;
+          }
+          
+          if (!locationInput.value.trim()) {
+            locationInput.focus();
+            setStatus(statusElement, 'status--error', '');
+            return;
+          }
         }
 
         if (!hasAtLeastOneItem(cartData)) {
           if (pickerError) pickerError.style.display = 'block';
-          categoriesBooking.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (formPrefix === 'manager') {
+            managerCategories.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            categoriesBooking.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          setStatus(statusElement, 'status--error', 'Please select at least one item');
           return;
         }
 
@@ -476,11 +509,19 @@ Thank you for your visit`;
 
         setTimeout(() => {
           setStatus(statusElement, 'status--success', 'WhatsApp opened. Please send your order there.');
-          if (bookingForm) bookingForm.reset();
+          if (formPrefix !== 'manager' && bookingForm) {
+            bookingForm.reset();
+          }
           // Reset cart
-          for (const item in cart) cart[item].qty = 0;
-          categoriesBooking.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
-          generateOrderSummary('', cart, orderSummary, orderSummaryContainer);
+          if (formPrefix === 'manager') {
+            for (const item in managerCart) managerCart[item].qty = 0;
+            managerCategories.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
+            generateOrderSummary('manager', managerCart, managerOrderSummary, managerOrderSummaryContainer);
+          } else {
+            for (const item in cart) cart[item].qty = 0;
+            categoriesBooking.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
+            generateOrderSummary('', cart, orderSummary, orderSummaryContainer);
+          }
         }, 600);
       }
 
@@ -510,6 +551,17 @@ Thank you for your visit`;
         managerOrderSection.style.display = managerOrderSection.style.display === 'block' ? 'none' : 'block';
       }
 
+      // Show/hide manager section
+      function toggleManagerSection(show) {
+        if (show) {
+          managerSection.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        } else {
+          managerSection.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      }
+
       // Event listeners
       if (bookingForm) {
         bookingForm.addEventListener('submit', (e) => handleBookingSubmit(e, '', cart, bookingStatus));
@@ -531,8 +583,20 @@ Thank you for your visit`;
         managerSubmitBtn.addEventListener('click', (e) => handleBookingSubmit(e, 'manager', managerCart, managerOrderStatus));
       }
 
+      if (closeManagerBtn) {
+        closeManagerBtn.addEventListener('click', () => toggleManagerSection(false));
+      }
+
+      // Handle manager link click
+      document.querySelectorAll('a[href="#manager"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          toggleManagerSection(true);
+        });
+      });
+
       // Quantity button event delegation for both carts
-      if (categoriesBooking) {
+      if (categoriesBooking) { 
         categoriesBooking.addEventListener('click', (e) => {
           if (e.target.classList.contains('qty-btn')) {
             handleQtyChange(e, cart, categoriesBooking);
@@ -565,4 +629,3 @@ Thank you for your visit`;
         }
       });
     });
-    
