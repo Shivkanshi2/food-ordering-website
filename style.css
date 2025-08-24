@@ -61,7 +61,7 @@
     .main-nav ul li a {
       color: #fff; font-weight: 700; padding: 8px 12px; border-radius: 6px; text-transform: uppercase;
       font-size: 13px; letter-spacing: 1px; transition: background-color var(--transition-fast), color var(--transition-fast);
-      text-shadow: 0 0 2px rgba(0,0,0,0.7)); word-break: break-word;
+      text-shadow: 0 0 2px rgba(0,0,0,0.7); word-break: break-word;
     }
     .main-nav ul li a:hover, .main-nav ul li a:focus { background: var(--gold); color: var(--maroon); box-shadow: 0 4px 12px rgba(233,201,107,0.7); outline: none; }
 
@@ -96,7 +96,17 @@
     }
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     .menu-columns{ display: flex; gap: 16px; min-width: max-content; }
-    .menu-col{ flex: 0 0 260px; padding: 10px 12px; background: rgba(139,29,29,0.6); border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+    .menu-col {
+  flex: 0 0 260px;
+  padding: 10px 12px;
+  background: rgba(139,29,29,0.6);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  height: 600px;   /* adjust this value as needed */
+  overflow-y: auto; /* add scroll if content is more than height */
+}
+
     .menu-col:hover{ transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.6); }
     .col-icon img{ width: 50px; display: block; margin: 6px auto 12px; filter: drop-shadow(0 0 3px rgba(0,0,0,0.7)); }
     .col-title{ font-weight: 800; font-size: 15px; background: var(--gold); color: #5b2a00; padding: 8px 12px; display: inline-block; border-radius: 6px; margin-bottom: 12px; word-break: break-word; }
@@ -237,7 +247,21 @@
       max-width: 500px;
       margin: 0 auto;
     }
-    
+    .order-now-btn {
+  position: sticky;
+  bottom: 20px;       /* distance from bottom */
+  right: 20px;        /* works if inside a flex/grid or absolute wrapper */
+  background: var(--maroon);
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
     .manager-login h2 {
       color: var(--maroon);
       margin-bottom: 20px;
