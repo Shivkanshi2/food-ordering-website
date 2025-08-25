@@ -306,9 +306,9 @@ const menuData = {
         
         if (formPrefix === 'manager') {
           // For manager section, use empty/default values
-          name = "Walk-in Customer";
-          phone = "N/A";
-          location = "Restaurant";
+          name = "";
+          phone = "";
+          location = "";
         } else {
           // For regular booking form, get values from form fields
           name = document.getElementById('namee').value.trim();
@@ -347,9 +347,9 @@ const menuData = {
         const orderId = 'CC' + Date.now().toString().slice(-6);
         const totalDisplay = '\u20B9' + total;
 
-        const waMessage = `* The Coco Chilli*
-*Main Road Torpa*
-*(Khunti)*
+        const waMessage = `*The Coco Chilli
+*Main Road Torpa
+*(Khunti)
 ..................
 * Invoice: ${orderId}
 * Name: ${params.name}
